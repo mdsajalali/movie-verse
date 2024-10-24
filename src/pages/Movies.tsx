@@ -7,7 +7,8 @@ import Navbar from "./Navbar";
 
 const Movies = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const data = useDataFetch(searchQuery);
+  const [page, setPage] = useState(1);
+  const data = useDataFetch(searchQuery, page);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -27,6 +28,7 @@ const Movies = () => {
             <p>No movies found</p>
           )}
         </div>
+        <button onClick={() => setPage(page + 1)}>Load More</button>
       </div>
     </div>
   );
