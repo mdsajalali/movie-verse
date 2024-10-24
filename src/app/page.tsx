@@ -1,5 +1,11 @@
+import Navbar from "@/pages/Navbar";
+
 const page = () => {
-  return <div className="text-center text-2xl">welcome movie verse</div>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 };
 
 export default page;
