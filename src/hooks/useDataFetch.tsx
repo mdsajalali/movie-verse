@@ -34,7 +34,7 @@ const useDataFetch = (searchQuery: string, page: number) => {
         }
         setData(result);
       } catch (error) {
-        console.error("Fetch error:", error);
+        console.error("Fetch error:", error); 
       }
     };
 

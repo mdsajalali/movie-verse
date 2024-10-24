@@ -1,5 +1,5 @@
-import React from "react";
-import { CiDark, CiHeart, CiSearch } from "react-icons/ci";
+import React, { useEffect, useState } from "react";
+import { CiDark, CiHeart, CiLight, CiSearch } from "react-icons/ci";
 
 interface NavbarProps {
   searchQuery: string;
@@ -7,11 +7,35 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ searchQuery, onSearchChange }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === "dark");
+      if (savedTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      }
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDarkMode ? "dark" : "light";
+    setIsDarkMode(!isDarkMode);
+    localStorage.setItem("theme", newTheme);
+
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
   return (
-    <div className="border-b">
+    <div className="border-b bg-white dark:bg-black">
       <div className="max-w-[1328px] w-full mx-auto px-2 sm:px-10 xl:px-8">
         <div className="flex items-center justify-between py-5">
-          <h1 className="text-[18px] md:text-2xl font-semibold cursor-pointer leading-2">
+          <h1 className="text-[18px] md:text-2xl  font-semibold cursor-pointer leading-2">
             Movie Verse
           </h1>
           <div>
@@ -21,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({ searchQuery, onSearchChange }) => {
                 placeholder="Search by title"
                 className="text-[12px] md:text-[14px] outline-none w-full"
                 value={searchQuery}
-                onChange={onSearchChange}  
+                onChange={onSearchChange}
               />
               <CiSearch size={20} className="text-[#3D4C56] cursor-pointer" />
             </div>
@@ -30,8 +54,12 @@ const Navbar: React.FC<NavbarProps> = ({ searchQuery, onSearchChange }) => {
             <div>
               <CiHeart size={20} className="cursor-pointer text-[#3D4C56]" />
             </div>
-            <div>
-              <CiDark size={20} className="cursor-pointer text-[#3D4C56]" />
+            <div onClick={toggleTheme} className="cursor-pointer">
+              {isDarkMode ? (
+                <CiLight size={20} className="text-[#3D4C56]" />
+              ) : (
+                <CiDark size={20} className="text-[#3D4C56]" />
+              )}
             </div>
           </div>
         </div>

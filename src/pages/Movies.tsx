@@ -15,7 +15,7 @@ const Movies = () => {
   };
 
   return (
-    <div>
+    <div className="bg-white dark:bg-gray-300">
       <Navbar searchQuery={searchQuery} onSearchChange={handleSearchChange} />
       <div className="max-w-[1328px] w-full mx-auto px-2 sm:px-10 xl:px-8">
         <h1 className="text-[18px] font-medium py-10">Movies</h1>
@@ -28,7 +28,14 @@ const Movies = () => {
             <p>No movies found</p>
           )}
         </div>
-        <button onClick={() => setPage(page + 1)}>Load More</button>
+        <div className="flex justify-center mt-5 mb-20">
+          <button
+            onClick={() => setPage(page + 1)}
+            className="bg-blue-500 text-white font-semibold py-2 px-6 rounded shadow hover:bg-blue-600 transition duration-300"
+          >
+            Load More
+          </button>
+        </div>
       </div>
     </div>
   );
