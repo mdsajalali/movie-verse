@@ -1,9 +1,9 @@
-import Navbar from "@/pages/Navbar";
+import Movies from "@/pages/Movies";
 
 const page = () => {
   return (
     <>
-      <Navbar />
+      <Movies />
     </>
   );
 };
