@@ -3,10 +3,10 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-10">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between">
-          <div className="mb-6 md:mb-0 w-full md:w-1/3">
+    <footer className=" bg-[#201F31] text-white py-10">
+      <div className="max-w-[1328px] w-full mx-auto px-2 sm:px-10 xl:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center">
+          <div className="-mt-10">
             <h3 className="text-lg font-semibold mb-2">About Us</h3>
             <p className="text-gray-400">
               We are a movie review site dedicated to providing you with the
@@ -14,7 +14,7 @@ const Footer = () => {
               watch.
             </p>
           </div>
-          <div className="mb-6 md:mb-0 w-full md:w-1/3">
+          <div>
             <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
             <ul className="space-y-2">
               <li>
@@ -39,7 +39,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="mb-6 md:mb-0 w-full md:w-1/3">
+          <div className="-mt-10">
             <h3 className="text-lg font-semibold mb-2">Follow Us</h3>
             <p className="text-gray-400 mb-2">
               Stay connected and follow us on our social media channels for the

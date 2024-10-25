@@ -18,15 +18,16 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   return (
-    <div className="group max-w-xs rounded overflow-hidden shadow-lg  ">
+    <div className=" w-[240px] h-[400px] rounded overflow-hidden shadow-lg  ">
       <Link href={`/movies/${movie.id}`} className="relative">
-        <Image
-          src={posterUrl}
-          alt={movie.title}
-          width={400}
-          height={200}
-          className="object-cover duration-300"
-        />
+        <div className="w-full h-[300px]  overflow-hidden  relative">
+          <Image
+            src={posterUrl}
+            alt={movie.title}
+            fill
+            className="object-cover  duration-300 ease-in-out  hover:scale-110"
+          />
+        </div>
         <div className="flex bg-black py-1 px-2 absolute bottom-0 right-0 items-center gap-1  ">
           <MdOutlineStar className="text-[#FFD600]" />
           <span className="text-sm text-white">
@@ -35,10 +36,15 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         </div>
       </Link>
       <div className="p-4">
-        <h2 className="text-lg font-bold hover:text-blue-500 transition-colors duration-300">
+        <Link
+          href={`/movies/${movie.id}`}
+          className="text-[16px] font-bold leading-tight hover:text-red-500 pb-3 transition-colors duration-300 line-clamp-2 dark:text-white text-black"
+        >
           {movie.title}
-        </h2>
-        <p className="text-sm text-gray-600">{movie.release_date}</p>
+        </Link>
+        <p className="text-[12px] text-gray-600 dark:text-white ">
+          {movie.release_date}
+        </p>
       </div>
     </div>
   );

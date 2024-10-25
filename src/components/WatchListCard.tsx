@@ -20,22 +20,24 @@ const WatchListCard: React.FC<WatchListCardProps> = ({
   return (
     <div
       key={watchlist[index]}
-      className="mb-10 flex items-center justify-between gap-5 bg-white p-4 rounded-lg shadow-md"
+      className="mb-10 flex items-center justify-between gap-5 bg-white dark:bg-black/30 p-4 rounded-lg shadow-md"
     >
       <div className="flex items-center gap-5">
         {movieData?.poster_path && (
-          <Image
-            src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
-            alt={`${movieData?.title} Poster`}
-            width={100}
-            height={150}
-            className="rounded-lg"
-            layout="intrinsic"
-          />
+          <div className="w-[100px] h-[150px] relative">
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
+              alt={`${movieData?.title} Poster`}
+              fill
+              className="rounded object-cover"
+            />
+          </div>
         )}
         <div>
-          <h1 className="text-2xl font-bold mt-4">{movieData?.title}</h1>
-          <p className="mt-2 text-gray-500">
+          <h1 className="text-[20px] text-black dark:text-white font-semibold mt-4">
+            {movieData?.title}
+          </h1>
+          <p className="mt-2 text-[16px] text-gray-500">
             Release Date: {movieData?.release_date}
           </p>
         </div>

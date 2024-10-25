@@ -32,11 +32,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="border-b bg-white dark:bg-black">
+    <div className="border-b dark:border-black/10 bg-white dark:bg-[#201F31]">
       <div className="max-w-[1328px] w-full mx-auto px-2 sm:px-10 xl:px-8">
         <div className="flex items-center justify-between py-5">
           <Link href="/">
-            <h1 className="text-[18px] md:text-2xl  font-semibold cursor-pointer leading-2">
+            <h1 className="text-[18px] md:text-2xl  font-semibold dark:text-white text-black cursor-pointer leading-tight">
               Movie Verse
             </h1>
           </Link>
@@ -46,7 +46,10 @@ const Navbar = () => {
               href="/watchlist"
               className="relative flex justify-center items-center"
             >
-              <CiHeart size={25} className="cursor-pointer text-[#3D4C56]" />
+              <CiHeart
+                size={25}
+                className="cursor-pointer text-[#3D4C56] dark:text-white"
+              />
               {watchlist.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-[17px] h-[17px] flex items-center justify-center">
                   {watchlist.length}
@@ -56,7 +59,7 @@ const Navbar = () => {
 
             <div onClick={toggleTheme} className="cursor-pointer">
               {isDarkMode ? (
-                <CiLight size={20} className="text-[#3D4C56]" />
+                <CiLight size={20} className="text-[#3D4C56] dark:text-white" />
               ) : (
                 <CiDark size={20} className="text-[#3D4C56]" />
               )}

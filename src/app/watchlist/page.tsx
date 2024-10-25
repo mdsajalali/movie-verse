@@ -17,7 +17,7 @@ const Page: React.FC = () => {
   };
 
   return (
-    <>
+    <div className=" dark:bg-[#201F31] opacity-95">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="max-w-[1328px] w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-10">
         {watchlist.length > 0 ? (
@@ -31,10 +31,12 @@ const Page: React.FC = () => {
             />
           ))
         ) : (
-          <p className="text-gray-500">No movies in your watchlist.</p>
+          <p className="text-gray-500 text-center">
+            No movies in your watchlist.
+          </p>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

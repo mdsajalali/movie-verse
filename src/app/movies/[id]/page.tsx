@@ -1,5 +1,6 @@
 "use client";
 
+import avatar from "../../../assets/avatar.png";
 import useMovieFetch from "@/hooks/useMovieFetch";
 import useCastFetch from "@/hooks/useCastFetch";
 import Image from "next/image";
@@ -70,98 +71,132 @@ const Page: React.FC<PageProps> = ({ params }) => {
   };
 
   return (
-    <div className="max-w-[1328px] w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-10">
-      <Toaster position="top-center" reverseOrder={false} />
-      <div className="flex items-center gap-5">
-        <div>
-          {movie?.poster_path && (
-            <Image
-              src={posterUrl}
-              alt={`${movie?.title} Poster`}
-              width={500}
-              height={450}
-              className="rounded-lg shadow-md"
-              layout="responsive"
-            />
-          )}
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold mt-4">{movie?.title}</h1>
-          <p className="mt-2 text-gray-700">{movie?.overview}</p>
-          <div className="mt-4">
-            <h2 className="text-xl font-semibold">Genres:</h2>
-            <div className="flex flex-wrap mt-2">
-              {movie?.genres?.map((genre) => (
-                <span
-                  key={genre.id}
-                  className="mr-2 mb-2 px-3 py-1 text-sm bg-blue-200 rounded-full"
-                >
-                  {genre.name}
-                </span>
-              ))}
-            </div>
-          </div>
-          <p className="mt-2 text-gray-500">
-            Release Date: {movie?.release_date}
-          </p>
-          <button
-            onClick={handleClick}
-            className={`flex items-center my-5 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ${
-              alreadyInWatchlist
-                ? "bg-red-400"
-                : "bg-blue-500 hover:bg-blue-600"
-            }`}
-          >
-            {!alreadyInWatchlist ? (
-              <FaPlus className="mr-2" />
-            ) : (
-              <FaMinus className="mr-2" />
-            )}
-            {alreadyInWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
-          </button>
-        </div>
-      </div>
-
-      <div className="py-10">
-        <h1 className="text-2xl font-bold mb-4">Casts</h1>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-10 gap-5">
-          {castData?.cast?.map((cast) => (
-            <div key={cast.id} className="flex flex-col items-center">
-              {cast.profile_path ? (
+    <div className="dark:bg-[#201F31] opacity-95">
+      <div className="max-w-[1328px]  opacity-95 w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-10">
+        <Toaster position="top-center" reverseOrder={false} />
+        <div className="flex items-center gap-5">
+          <div>
+            {movie?.poster_path && (
+              <div className="w-[300px] h-[400px]  overflow-hidden rounded relative">
                 <Image
-                  src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
-                  alt={cast.name}
-                  width={80}
-                  height={50}
-                  className="shadow-md mb-2"
+                  src={posterUrl}
+                  alt={`${movie?.title} Poster`}
+                  fill
+                  className="object-cover"
                 />
-              ) : (
-                <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mb-2">
-                  <span className="text-gray-500">No Image</span>
-                </div>
-              )}
-              <h2 className="text-sm font-semibold">{cast.name}</h2>
-              <p className="text-xs text-gray-600">{cast.character}</p>
+              </div>
+            )}
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold mt-4 text-black dark:text-white">
+              {movie?.title}
+            </h1>
+            <p className="mt-2 text-gray-700   dark:text-white">
+              {movie?.overview}
+            </p>
+            <div className="mt-4">
+              <h2 className="text-xl text-black dark:text-white font-semibold">
+                Genres:
+              </h2>
+              <div className="flex flex-wrap mt-2">
+                {movie?.genres?.map((genre) => (
+                  <span
+                    key={genre.id}
+                    className="mr-2 text-black dark:text-white mb-2 px-3 py-1 text-sm dark:bg-black bg-black/10 rounded-full"
+                  >
+                    {genre.name}
+                  </span>
+                ))}
+              </div>
             </div>
-          ))}
+            <p className="mt-2   dark:text-white text-gray-500">
+              Release Date: {movie?.release_date}
+            </p>
+            <button
+              onClick={handleClick}
+              className={`flex text-[16px]  items-center my-5 text-white font-medium py-3 px-4 rounded shadow-md transition duration-300 ${
+                alreadyInWatchlist ? "bg-red-500" : "bg-black hover:bg-black/70"
+              }`}
+            >
+              {!alreadyInWatchlist ? (
+                <FaPlus size={12} className="mr-2" />
+              ) : (
+                <FaMinus size={12} className="mr-2" />
+              )}
+              {alreadyInWatchlist
+                ? "Remove from Watchlist"
+                : "Add to Watchlist"}
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div>
-        <h1 className="text-2xl font-bold mb-4">Recommended for you</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5">
-          {recommendationData?.results?.map((movie) => (
-            <Link href={`/movies/${movie.id}`} key={movie.id}>
-              <Image
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-                width={80}
-                height={50}
-                className="shadow-md mb-2"
-                layout="responsive"
-              />
-            </Link>
-          ))}
+        <div className="py-10">
+          <h1 className="text-2xl font-bold mb-4 text-black dark:text-white">
+            Casts
+          </h1>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-5">
+            {castData?.cast?.map((cast) => (
+              <div
+                key={cast.id}
+                className="flex gap-2 rounded justify-between items-center hover:bg-black/20 duration-300 bg-black/10 dark:bg-black pt-3 pb-1 px-4"
+              >
+                {cast.profile_path ? (
+                  <div className="size-14 overflow-hidden rounded-full relative">
+                    <Image
+                      src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+                      alt={cast.name}
+                      fill
+                      className="shadow-md mb-2 object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-12 h-12  bg-gray-300 rounded-full flex items-center justify-center mb-2">
+                    <div className="size-12 overflow-hidden  relative">
+                      <Image
+                        src={avatar}
+                        alt={cast.name}
+                        fill
+                        className="shadow-md  object-cover"
+                      />
+                    </div>
+                  </div>
+                )}
+                <div>
+                  <h2 className="text-sm font-semibold text-black dark:text-white">
+                    {cast.name}
+                  </h2>
+                  <p className="text-xs   dark:text-white text-gray-600">
+                    {cast.character}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h1 className="text-2xl font-bold text-black dark:text-white mb-4">
+            Recommended for you
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5">
+            {recommendationData?.results?.slice(0, 12).map((movie) => (
+              <Link
+                href={`/movies/${movie.id}`}
+                key={movie.id}
+                className="w-full h-[300px] overflow-hidden rounded relative"
+              >
+                <Image
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  fill
+                  className="object-cover transition-transform duration-300 ease-in-out hover:scale-110"
+                />
+                <div className="flex bg-black py-1 px-2 absolute bottom-0 right-0 items-center gap-1">
+                  <span className="text-sm text-white">{movie.title}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>
