@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import useDataFetch from "@/hooks/useDataFetch";
 import MovieCard from "@/components/MovieCard";
-import Navbar from "./Navbar";
+import SearchField from "@/components/SearchField";
 
 const Movies = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,9 +16,14 @@ const Movies = () => {
 
   return (
     <div className="bg-white dark:bg-gray-300">
-      <Navbar searchQuery={searchQuery} onSearchChange={handleSearchChange} />
       <div className="max-w-[1328px] w-full mx-auto px-2 sm:px-10 xl:px-8">
-        <h1 className="text-[18px] font-medium py-10">Movies</h1>
+        <div className="flex items-center justify-between gap-5">
+          <h1 className="text-[18px] font-medium py-10">Movies</h1>
+          <SearchField
+            searchQuery={searchQuery}
+            onSearchChange={handleSearchChange}
+          />
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 place-items-center">
           {data?.results && data.results.length > 0 ? (
             data.results.map((movie) => (

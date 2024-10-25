@@ -19,6 +19,7 @@ const useMovieFetch = (movieId: number) => {
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/${movieId}?api_key=0889c6621047b8424affa20b1dd37dcf`
         );
+
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
