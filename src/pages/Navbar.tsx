@@ -1,11 +1,13 @@
 "use client";
 
+import useWatchlist from "@/store/useWatchlist";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { CiDark, CiHeart, CiLight } from "react-icons/ci";
 
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const watchlist = useWatchlist((state) => state.watchlist);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -40,9 +42,18 @@ const Navbar = () => {
           </Link>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <Link href="/watchlist">
-              <CiHeart size={20} className="cursor-pointer text-[#3D4C56]" />
+            <Link
+              href="/watchlist"
+              className="relative flex justify-center items-center"
+            >
+              <CiHeart size={25} className="cursor-pointer text-[#3D4C56]" />
+              {watchlist.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-[17px] h-[17px] flex items-center justify-center">
+                  {watchlist.length}
+                </span>
+              )}
             </Link>
+
             <div onClick={toggleTheme} className="cursor-pointer">
               {isDarkMode ? (
                 <CiLight size={20} className="text-[#3D4C56]" />
