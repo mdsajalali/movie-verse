@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { MdOutlineStar } from "react-icons/md";
 
 interface Movie {
@@ -18,7 +19,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 
   return (
     <div className="group max-w-xs rounded overflow-hidden shadow-lg  ">
-      <div className="relative">
+      <Link href={`/movies/${movie.id}`} className="relative">
         <Image
           src={posterUrl}
           alt={movie.title}
@@ -32,7 +33,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             {movie.vote_average.toFixed(1)}
           </span>
         </div>
-      </div>
+      </Link>
       <div className="p-4">
         <h2 className="text-lg font-bold hover:text-blue-500 transition-colors duration-300">
           {movie.title}
