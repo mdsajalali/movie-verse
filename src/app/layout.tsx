@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/pages/Footer";
 import Navbar from "@/pages/Navbar";
 import { Toaster } from "react-hot-toast";
+import Provider from "@/provider/Provider";
 const font = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,12 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <Navbar />
-
-        {children}
-
-        <Footer />
-        <Toaster position="top-center" reverseOrder={false} />
+        <Provider>
+          <Navbar />
+          {children}
+          <Footer />
+          <Toaster position="top-center" reverseOrder={false} />
+        </Provider>
       </body>
     </html>
   );

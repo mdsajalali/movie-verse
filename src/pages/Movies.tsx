@@ -1,17 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import useDataFetch from "@/hooks/useDataFetch";
 import MovieCard from "@/components/MovieCard";
 import SearchField from "@/components/SearchField";
+import MoviesData from "@/data/MoviesData";
+interface Movie {
+  id: number;
+  title: string;
+  release_date: string;
+  poster_path: string;
+  vote_average: number;
+}
 
 const Movies = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
-  const data = useDataFetch(searchQuery, page);
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
+  const [movies, isLoading] = MoviesData(searchQuery, page);
+
+  if (isLoading && Array.isArray(movies) && movies.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full size-12 border-t-4 border-red-500 border-solid"></div>
+      </div>
+    );
+  }
+
+  const handleSearchChange = (t: string) => {
+    setSearchQuery(t);
   };
 
   return (
@@ -25,15 +41,16 @@ const Movies = () => {
           <SearchField
             searchQuery={searchQuery}
             onSearchChange={handleSearchChange}
+            setPage={setPage}
           />
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 gap-y-4 md:gap-4 place-items-center">
-          {data?.results && data.results.length > 0 ? (
-            data.results.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
+          {Array.isArray(movies) && movies.length > 0 ? (
+            movies.map((movie) => (
+              <MovieCard key={movie.id} movie={movie as Movie} />
             ))
           ) : (
-            <p className="  text-black dark:text-white">No movies found</p>
+            <p className="text-black dark:text-white">No movies found</p>
           )}
         </div>
         <div className="flex justify-center pt-10 pb-16">
