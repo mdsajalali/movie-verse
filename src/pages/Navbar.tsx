@@ -1,35 +1,12 @@
 "use client";
 
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 import useWatchlist from "@/store/useWatchlist";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { CiDark, CiHeart, CiLight } from "react-icons/ci";
+import { CiHeart } from "react-icons/ci";
 
 const Navbar = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const watchlist = useWatchlist((state) => state.watchlist);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === "dark");
-      if (savedTheme === "dark") {
-        document.documentElement.classList.add("dark");
-      }
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = !isDarkMode ? "dark" : "light";
-    setIsDarkMode(!isDarkMode);
-    localStorage.setItem("theme", newTheme);
-
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
 
   return (
     <div className="border-b dark:border-black/10 bg-white dark:bg-[#201F31]">
@@ -56,14 +33,8 @@ const Navbar = () => {
                 </span>
               )}
             </Link>
-
-            <div onClick={toggleTheme} className="cursor-pointer">
-              {isDarkMode ? (
-                <CiLight size={20} className="text-[#3D4C56] dark:text-white" />
-              ) : (
-                <CiDark size={20} className="text-[#3D4C56]" />
-              )}
-            </div>
+            {/* Theme switcher */}
+            <ThemeSwitcher />
           </div>
         </div>
       </div>

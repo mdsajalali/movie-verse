@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import useDataFetch from "@/hooks/useDataFetch";
 import MovieCard from "@/components/MovieCard";
 import SearchField from "@/components/SearchField";
