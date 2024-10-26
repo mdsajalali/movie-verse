@@ -8,7 +8,7 @@ import useRecommendationFetch from "@/hooks/useRecommendationFetch";
 import Link from "next/link";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import useWatchlist from "@/store/useWatchlist";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 interface Genre {
   id: number;
@@ -73,8 +73,7 @@ const Page: React.FC<PageProps> = ({ params }) => {
   return (
     <div className="dark:bg-[#201F31] opacity-95">
       <div className="max-w-[1328px]  opacity-95 w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-10">
-        <Toaster position="top-center" reverseOrder={false} />
-        <div className="flex items-center gap-5">
+        <div className="flex flex-col md:flex-row items-center gap-5">
           <div>
             {movie?.poster_path && (
               <div className="w-[300px] h-[400px]  overflow-hidden rounded relative">
@@ -88,14 +87,14 @@ const Page: React.FC<PageProps> = ({ params }) => {
             )}
           </div>
           <div>
-            <h1 className="text-2xl font-bold mt-4 text-black dark:text-white">
+            <h1 className="text-[20px] md:text-2xl font-bold mt-4 text-black dark:text-white">
               {movie?.title}
             </h1>
-            <p className="mt-2 text-gray-700   dark:text-white">
+            <p className="mt-2 text-gray-700 text-[14px] md:text-[16px]   dark:text-white">
               {movie?.overview}
             </p>
             <div className="mt-4">
-              <h2 className="text-xl text-black dark:text-white font-semibold">
+              <h2 className="text-[18px] md:text-[20px] text-black dark:text-white font-semibold">
                 Genres:
               </h2>
               <div className="flex flex-wrap mt-2">
@@ -109,7 +108,7 @@ const Page: React.FC<PageProps> = ({ params }) => {
                 ))}
               </div>
             </div>
-            <p className="mt-2   dark:text-white text-gray-500">
+            <p className="mt-2  text-[14px] md:text-[16px] dark:text-white text-gray-500">
               Release Date: {movie?.release_date}
             </p>
             <button
@@ -131,14 +130,14 @@ const Page: React.FC<PageProps> = ({ params }) => {
         </div>
 
         <div className="py-10">
-          <h1 className="text-2xl font-bold mb-4 text-black dark:text-white">
+          <h1 className="text-[20px] md:text-2xl font-bold mb-4 text-black dark:text-white">
             Casts
           </h1>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-2 md:gap-5">
             {castData?.cast?.map((cast) => (
               <div
                 key={cast.id}
-                className="flex gap-2 rounded justify-between items-center hover:bg-black/20 duration-300 bg-black/10 dark:bg-black pt-3 pb-1 px-4"
+                className="flex gap-2  flex-col md:flex-row rounded sm:justify-between justify-center items-center hover:bg-black/20 duration-300 bg-black/10 dark:bg-black pt-3 pb-1 px-4"
               >
                 {cast.profile_path ? (
                   <div className="size-14 overflow-hidden rounded-full relative">
@@ -175,10 +174,10 @@ const Page: React.FC<PageProps> = ({ params }) => {
         </div>
 
         <div>
-          <h1 className="text-2xl font-bold text-black dark:text-white mb-4">
+          <h1 className="text-[20px] md:text-2xl font-bold text-black dark:text-white mb-4">
             Recommended for you
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-2 gap-y-4 md:gap-4 place-items-center">
             {recommendationData?.results?.slice(0, 12).map((movie) => (
               <Link
                 href={`/movies/${movie.id}`}

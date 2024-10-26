@@ -24,7 +24,7 @@ const WatchListCard: React.FC<WatchListCardProps> = ({
     >
       <div className="flex items-center gap-5">
         {movieData?.poster_path && (
-          <div className="w-[100px] h-[150px] relative">
+          <div className="w-[100px]  h-[120px] md:h-[150px] relative">
             <Image
               src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
               alt={`${movieData?.title} Poster`}
@@ -34,10 +34,10 @@ const WatchListCard: React.FC<WatchListCardProps> = ({
           </div>
         )}
         <div>
-          <h1 className="text-[20px] text-black dark:text-white font-semibold mt-4">
+          <h1 className="text-[18px] md:text-[20px] text-black dark:text-white font-semibold mt-4">
             {movieData?.title}
           </h1>
-          <p className="mt-2 text-[16px] text-gray-500">
+          <p className="mt-2 text-[14px] md:text-[16px] text-gray-500">
             Release Date: {movieData?.release_date}
           </p>
         </div>

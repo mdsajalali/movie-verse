@@ -18,7 +18,7 @@ const Movies = () => {
     <div className="bg-white dark:shadow dark:bg-[#201F31] opacity-95">
       <div className="max-w-[1328px] w-full mx-auto px-2 sm:px-10 xl:px-8">
         <div className="flex items-center justify-between gap-5">
-          <h1 className="text-2xl  text-black dark:text-white font-bold  py-10">
+          <h1 className="text-[20px] md:text-2xl  text-black dark:text-white font-bold  py-10">
             Movies
           </h1>
 
@@ -27,7 +27,7 @@ const Movies = () => {
             onSearchChange={handleSearchChange}
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 place-items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 gap-y-4 md:gap-4 place-items-center">
           {data?.results && data.results.length > 0 ? (
             data.results.map((movie) => (
               <MovieCard key={movie.id} movie={movie} />
@@ -36,7 +36,7 @@ const Movies = () => {
             <p className="  text-black dark:text-white">No movies found</p>
           )}
         </div>
-        <div className="flex justify-center pt-5 pb-20">
+        <div className="flex justify-center pt-10 pb-16">
           <button
             onClick={() => setPage(page + 1)}
             className="bg-red-500 text-white font-semibold py-2 px-6 rounded shadow hover:bg-red-300 transition duration-300"
