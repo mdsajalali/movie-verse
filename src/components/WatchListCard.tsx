@@ -1,4 +1,4 @@
-import useMovieFetch from "@/hooks/useMovieFetch";
+import MovieData from "@/data/MovieData";
 import Image from "next/image";
 import { FaTrash } from "react-icons/fa";
 
@@ -9,13 +9,21 @@ interface WatchListCardProps {
   index: number;
 }
 
-const WatchListCard: React.FC<WatchListCardProps> = ({
+const WatchListCard = ({
   movie,
   handleDelete,
   watchlist,
   index,
-}) => {
-  const movieData = useMovieFetch(movie);
+}: WatchListCardProps) => {
+  const [movieData, isMovieLoading] = MovieData(movie);
+
+  if (isMovieLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full size-12 border-t-4 border-red-500 border-solid" />
+      </div>
+    );
+  }
 
   return (
     <div
