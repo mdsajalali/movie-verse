@@ -1,5 +1,6 @@
-import MovieData from "@/data/MovieData";
+import { getMovieById } from "@/app/actions/movies";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
 interface WatchListCardProps {
@@ -9,15 +10,39 @@ interface WatchListCardProps {
   index: number;
 }
 
+interface Genre {
+  id: number;
+  name: string;
+}
+
+interface Movie {
+  id: number;
+  title: string;
+  overview: string;
+  poster_path: string | null;
+  release_date: string;
+  genres: Genre[];
+}
+
 const WatchListCard = ({
   movie,
   handleDelete,
   watchlist,
   index,
 }: WatchListCardProps) => {
-  const [movieData, isMovieLoading] = MovieData(movie);
+  const [isLoading, setIsLoading] = useState(true);
+  const [movieData, setMovieData] = useState<Movie | null>(null);
+  // const [movieData, isMovieLoading] = MovieData(movie);
 
-  if (isMovieLoading) {
+  useEffect(() => {
+    (async () => {
+      const result = await getMovieById(movie);
+      setMovieData(result);
+      setIsLoading(false);
+    })();
+  }, [movie]);
+
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="animate-spin rounded-full size-12 border-t-4 border-red-500 border-solid" />

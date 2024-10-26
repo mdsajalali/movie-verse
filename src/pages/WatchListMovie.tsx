@@ -1,9 +1,9 @@
 "use client";
 
+import WatchListCard from "@/components/WatchListCard";
 import useWatchlist from "@/store/useWatchlist";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import WatchListCard from "@/components/WatchListCard";
 
 const WatchListMovie = () => {
   const watchlist = useWatchlist((state) => state.watchlist);
@@ -23,7 +23,7 @@ const WatchListMovie = () => {
 
   if (!isMounted) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-[70vh]">
         <div className="animate-spin rounded-full size-12 border-t-4 border-red-500 border-solid" />
       </div>
     );
@@ -42,8 +42,8 @@ const WatchListMovie = () => {
           />
         ))
       ) : (
-        <div className="flex items-center justify-center h-screen">
-          <div className="animate-spin rounded-full size-12 border-t-4 border-red-500 border-solid" />
+        <div className="flex items-center justify-center py-20">
+          <h1 className="text-xl dark:text-white">No movies in watchlist</h1>
         </div>
       )}
     </>
