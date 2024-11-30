@@ -1,16 +1,10 @@
 "use client";
 
-import { getAllMovies } from "@/app/services/movies";
+import { getAllMovies } from "@/services/movies";
 import MovieCard from "@/components/MovieCard";
 import SearchField from "@/components/SearchField";
 import { useEffect, useState } from "react";
-interface Movie {
-  id: number;
-  title: string;
-  release_date: string;
-  poster_path: string;
-  vote_average: number;
-}
+import { Movie } from "@/types";
 
 const Movies = () => {
   const [totalPages, setTotalPages] = useState(0);

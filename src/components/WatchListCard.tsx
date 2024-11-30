@@ -1,28 +1,9 @@
-import { getMovieById } from "@/app/services/movies";
+import { envConfig } from "@/config/envConfig";
+import { getMovieById } from "@/services/movies";
+import { SingleMovieCardProps, WatchListCardProps } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
-
-interface WatchListCardProps {
-  movie: number;
-  handleDelete: (movieId: number) => void;
-  watchlist: number[];
-  index: number;
-}
-
-interface Genre {
-  id: number;
-  name: string;
-}
-
-interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string | null;
-  release_date: string;
-  genres: Genre[];
-}
 
 const WatchListCard = ({
   movie,
@@ -31,8 +12,7 @@ const WatchListCard = ({
   index,
 }: WatchListCardProps) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [movieData, setMovieData] = useState<Movie | null>(null);
-  // const [movieData, isMovieLoading] = MovieData(movie);
+  const [movieData, setMovieData] = useState<SingleMovieCardProps | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -59,7 +39,7 @@ const WatchListCard = ({
         {movieData?.poster_path && (
           <div className="w-[100px]  h-[120px] md:h-[150px] relative">
             <Image
-              src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
+              src={`${envConfig.baseImageApi}/${movieData.poster_path}`}
               alt={`${movieData?.title} Poster`}
               fill
               className="rounded object-cover"

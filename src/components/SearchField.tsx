@@ -1,10 +1,5 @@
+import { NavbarProps } from "@/types";
 import { CiSearch } from "react-icons/ci";
-
-interface NavbarProps {
-  searchQuery: string;
-  onSearchChange: (e: string) => void;
-  setPage: (num: number) => void;
-}
 
 const SearchField = ({ searchQuery, onSearchChange, setPage }: NavbarProps) => {
   return (

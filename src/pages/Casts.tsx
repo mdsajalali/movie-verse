@@ -1,19 +1,9 @@
 "use client";
-import { getMovieCast } from "@/app/services/movies";
+import { getMovieCast } from "@/services/movies";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import avatar from "../assets/avatar.png";
-
-interface Cast {
-  id: number;
-  name: string;
-  character: string;
-  profile_path: string | null;
-}
-
-interface MovieProps {
-  movieId: number;
-}
+import { envConfig } from "@/config/envConfig";
+import { Cast, MovieProps } from "@/types";
 
 const Casts = ({ movieId }: MovieProps) => {
   const [loading, setLoading] = useState(true);
@@ -53,7 +43,7 @@ const Casts = ({ movieId }: MovieProps) => {
             {cast.profile_path ? (
               <div className="size-14 overflow-hidden rounded-full relative">
                 <Image
-                  src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+                  src={`${envConfig.baseImageApi}/${cast.profile_path}`}
                   alt={cast.name}
                   fill
                   className="shadow-md mb-2 object-cover"
@@ -63,7 +53,7 @@ const Casts = ({ movieId }: MovieProps) => {
               <div className="w-12 h-12  bg-gray-300 rounded-full flex items-center justify-center mb-2">
                 <div className="size-12 overflow-hidden  relative">
                   <Image
-                    src={avatar}
+                    src="/avatar.png"
                     alt={cast.name}
                     fill
                     className="shadow-md  object-cover"

@@ -1,18 +1,10 @@
 "use client";
-import { getRecommendedMovies } from "@/app/services/movies";
+import { envConfig } from "@/config/envConfig";
+import { getRecommendedMovies } from "@/services/movies";
+import { MovieProps, RecommendationProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-interface RecommendationProps {
-  id: number;
-  title: string;
-  poster_path: string | null;
-}
-
-interface MovieProps {
-  movieId: number;
-}
 
 const Recommendation = ({ movieId }: MovieProps) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,12 +25,12 @@ const Recommendation = ({ movieId }: MovieProps) => {
       {recommendations.length > 0 &&
         recommendations?.slice(0, 12).map((movie: RecommendationProps) => (
           <Link
-            href={`/movies/${movie.id}`}
+            href={`/movie/${movie.id}`}
             key={movie.id}
             className="w-full h-[300px] overflow-hidden rounded relative"
           >
             <Image
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              src={`${envConfig.baseImageApi}/${movie.poster_path}`}
               alt={movie.title}
               fill
               className="object-cover transition-transform duration-300 ease-in-out hover:scale-110"

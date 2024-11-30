@@ -16,6 +16,7 @@ Explore the live project [here](https://the-movie-verse.vercel.app/)
 - **Movie Search Functionality**
 - **Load More Functionality**
 - **Theme Switcher**
+- **SSR Data Fetching**
 
 ## Tech Stack
 

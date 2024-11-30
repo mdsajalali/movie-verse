@@ -1,7 +1,9 @@
+import { envConfig } from "@/config/envConfig";
+
 export const getAllMovies = async (searchQuery: string, page: number) => {
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/${
+      `${envConfig.baseApi}/${
         searchQuery ? "search/movie" : "movie/popular"
       }?api_key=0889c6621047b8424affa20b1dd37dcf&query=${searchQuery}&page=${page}`
     );
@@ -17,7 +19,8 @@ export const getAllMovies = async (searchQuery: string, page: number) => {
 export const getMovieById = async (movieId: number) => {
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=0889c6621047b8424affa20b1dd37dcf`
+      `${envConfig.baseApi}/movie/${movieId}?api_key=0889c6621047b8424affa20b1dd37dcf`,
+      { cache: "no-store" }
     );
 
     const result = await res.json();
@@ -31,7 +34,7 @@ export const getMovieById = async (movieId: number) => {
 export const getMovieCast = async (movieId: number) => {
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=0889c6621047b8424affa20b1dd37dcf`
+      `${envConfig.baseApi}/movie/${movieId}/credits?api_key=0889c6621047b8424affa20b1dd37dcf`
     );
 
     const result = await res.json();
@@ -45,7 +48,7 @@ export const getMovieCast = async (movieId: number) => {
 export const getRecommendedMovies = async (movieId: number) => {
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=0889c6621047b8424affa20b1dd37dcf`
+      `${envConfig.baseApi}/movie/${movieId}/recommendations?api_key=0889c6621047b8424affa20b1dd37dcf`
     );
 
     const result = await res.json();

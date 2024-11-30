@@ -1,25 +1,15 @@
+import { envConfig } from "@/config/envConfig";
+import { MovieCardProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineStar } from "react-icons/md";
 
-interface Movie {
-  id: number;
-  title: string;
-  release_date: string;
-  poster_path: string;
-  vote_average: number;
-}
-
-interface MovieCardProps {
-  movie: Movie;
-}
-
 const MovieCard = ({ movie }: MovieCardProps) => {
-  const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  const posterUrl = `${envConfig.baseImageApi}/${movie.poster_path}`;
 
   return (
     <div className=" w-full h-[400px] rounded overflow-hidden shadow-lg  ">
-      <Link href={`/movies/${movie.id}`} className="relative">
+      <Link href={`/movie/${movie.id}`} className="relative">
         <div className="w-full h-[300px]  overflow-hidden  relative">
           <Image
             src={posterUrl}
@@ -37,7 +27,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
       </Link>
       <div className="p-4">
         <Link
-          href={`/movies/${movie.id}`}
+          href={`/movie/${movie.id}`}
           className="text-[16px] font-bold leading-tight hover:text-red-500 pb-3 transition-colors duration-300 line-clamp-2 dark:text-white text-black"
         >
           {movie.title}

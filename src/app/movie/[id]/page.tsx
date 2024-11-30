@@ -1,12 +1,7 @@
 import Casts from "@/pages/Casts";
 import Movie from "@/pages/Movie";
 import Recommendation from "@/pages/Recommendation";
-
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
+import { PageProps } from "@/types";
 
 const page = ({ params }: PageProps) => {
   const movieId = Number(params.id);

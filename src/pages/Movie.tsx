@@ -1,35 +1,19 @@
 "use client";
 
-import { getMovieById } from "@/app/services/movies";
+import { envConfig } from "@/config/envConfig";
+import { getMovieById } from "@/services/movies";
 import useWatchlist from "@/store/useWatchlist";
+import { Genre, MovieProps, TMovie } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-interface MovieProps {
-  movieId: number;
-}
-
-interface Genre {
-  id: number;
-  name: string;
-}
-
-interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string | null;
-  release_date: string;
-  genres: Genre[];
-}
-
 const Movie = ({ movieId }: MovieProps) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const [movie, setMovie] = useState<TMovie | null>(null);
 
-  const posterUrl = `https://image.tmdb.org/t/p/w500${movie?.poster_path}`;
+  const posterUrl = `${envConfig.baseImageApi}/${movie?.poster_path}`;
   const watchlist = useWatchlist((state) => state.watchlist);
   const addToWatchlist = useWatchlist((state) => state.addToWatchlist);
   const removeFromWatchlist = useWatchlist(
