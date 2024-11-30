@@ -21,7 +21,6 @@ Explore the live project [here](https://the-movie-verse.vercel.app/)
 
 - Next.js
 - TailwindCSS
-- Zustand
 - React Icons
 
 ### 💻 Getting Started
@@ -36,13 +35,13 @@ git clone https://github.com/mdsajalali/movie-verse.git
 
 ```
 cd movie-verse
-npm install
+pnpm install
 ```
 
 3. Run the development server:
 
 ```
-npm run dev
+pnpm dev
 ```
 
 Connect with me on [LinkedIn](https://www.linkedin.com/in/mdsajalali/).

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import ScrollTop from "@/components/ScrollTop";
 const font = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,6 +24,8 @@ export default function RootLayout({
         {children}
         <Footer />
         <Toaster position="top-center" reverseOrder={false} />
+        {/* Scroll top */}
+        <ScrollTop />
       </body>
     </html>
   );
