@@ -17,6 +17,7 @@ Explore the live project [here](https://the-movie-verse.vercel.app/)
 - **Load More Functionality**
 - **Theme Switcher**
 - **SSR Data Fetching**
+- **Filter out romantic and drama movies**
 
 ## Tech Stack
 

@@ -1,5 +1,16 @@
 import { envConfig } from "@/config/envConfig";
 
+// Utility function to filter out movies by excluded genres
+const filterExcludedGenres = (
+  movies: { genre_ids: number[] }[],
+  excludedGenres: number[]
+) => {
+  return movies?.filter(
+    (movie) =>
+      !movie.genre_ids.some((genreId) => excludedGenres.includes(genreId))
+  );
+};
+
 export const getAllMovies = async (searchQuery: string, page: number) => {
   try {
     const res = await fetch(
@@ -10,7 +21,10 @@ export const getAllMovies = async (searchQuery: string, page: number) => {
 
     const result = await res.json();
 
-    return result;
+    // Filter out romantic and drama movies
+    const filteredMovies = filterExcludedGenres(result.results, [10749, 18]);
+
+    return { ...result, results: filteredMovies };
   } catch {
     throw new Error("Failed to fetch movies");
   }
@@ -25,7 +39,7 @@ export const getMovieById = async (movieId: number) => {
 
     const result = await res.json();
 
-    return result;
+    return result; // No filtering needed for single movie fetch
   } catch {
     throw new Error("Failed to fetch movie");
   }
@@ -39,7 +53,7 @@ export const getMovieCast = async (movieId: number) => {
 
     const result = await res.json();
 
-    return result;
+    return result; // No filtering needed for cast details
   } catch {
     throw new Error("Failed to fetch movie cast");
   }
@@ -53,7 +67,10 @@ export const getRecommendedMovies = async (movieId: number) => {
 
     const result = await res.json();
 
-    return result;
+    // Filter out romantic and drama movies
+    const filteredMovies = filterExcludedGenres(result.results, [10749, 18]);
+
+    return { ...result, results: filteredMovies };
   } catch {
     throw new Error("Failed to fetch recommended movies");
   }
