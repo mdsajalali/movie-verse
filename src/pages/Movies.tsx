@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllMovies } from "@/app/actions/movies";
+import { getAllMovies } from "@/app/services/movies";
 import MovieCard from "@/components/MovieCard";
 import SearchField from "@/components/SearchField";
 import { useEffect, useState } from "react";

@@ -1,5 +1,5 @@
 "use client";
-import { getMovieCast } from "@/app/actions/movies";
+import { getMovieCast } from "@/app/services/movies";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import avatar from "../assets/avatar.png";

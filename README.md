@@ -21,6 +21,7 @@ Explore the live project [here](https://the-movie-verse.vercel.app/)
 
 - Next.js
 - TailwindCSS
+- Zustand
 - React Icons
 
 ### 💻 Getting Started

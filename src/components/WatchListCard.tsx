@@ -1,4 +1,4 @@
-import { getMovieById } from "@/app/actions/movies";
+import { getMovieById } from "@/app/services/movies";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";

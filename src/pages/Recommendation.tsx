@@ -1,5 +1,5 @@
 "use client";
-import { getRecommendedMovies } from "@/app/actions/movies";
+import { getRecommendedMovies } from "@/app/services/movies";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
